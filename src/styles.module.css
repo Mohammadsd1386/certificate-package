@@ -1,9 +1,122 @@
-/* add css module styles here (optional) */
+/* Certificate.css */
 
-.test {
-  margin: 2em;
-  padding: 0.5em;
-  border: 2px solid #000;
-  font-size: 2em;
+/* Container for the certificate */
+.certificate-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+/* Certificate design */
+.certificate-border {
+  width: 80%;
+  height: 70%;
+  padding: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #d1c4e9, #9575cd);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
+  border: 8px solid #673ab7;
+}
+
+.certificate-header {
+  margin-bottom: 40px;
+}
+
+.certificate-title {
+  font-size: 40px;
+  font-family: 'Georgia', serif;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.certificate-body {
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.certificate-text {
+  font-size: 22px;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  margin: 10px 0;
+}
+
+.certificate-name {
+  font-size: 50px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  color: #fff;
+  margin: 10px 0;
+}
+
+.certificate-course {
+  font-size: 30px;
+  font-style: italic;
+  color: #ffffff;
+  margin: 10px 0;
+}
+
+.certificate-footer {
+  margin-top: 50px;
+}
+
+.certificate-date {
+  font-size: 22px;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.signature-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.signature-line {
+  width: 200px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.signature-text {
+  font-size: 18px;
+  color: #ffffff;
+  margin-top: 5px;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.company-logo {
+  max-width: 100px;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.download-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.download-buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #673ab7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.download-buttons button:hover {
+  background-color: #5e35b1;
 }
