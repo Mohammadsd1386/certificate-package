@@ -1,25 +1,24 @@
-/* Certificate.css */
-
 /* Container for the certificate */
 .certificate-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: #f4f4f4;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Certificate design */
 .certificate-border {
   width: 80%;
-  height: 70%;
+  max-width: 900px; /* اطمینان حاصل می‌کند که کانتینر به درستی محدود باشد */
   padding: 40px;
   border-radius: 10px;
   background: linear-gradient(135deg, #d1c4e9, #9575cd);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   border: 8px solid #673ab7;
+  overflow: hidden; /* جلوگیری از بیرون زدن محتوا */
 }
 
 .certificate-header {
@@ -119,4 +118,9 @@
 
 .download-buttons button:hover {
   background-color: #5e35b1;
+}
+
+.download-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
