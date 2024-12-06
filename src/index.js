@@ -8,10 +8,7 @@ const CertificateContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f4f4f4;
   padding: 20px;
-  box-sizing: border-box;
 `;
 
 const CertificateBorder = styled.div`
@@ -132,34 +129,44 @@ const DownloadButton = styled.button`
 
 const Certificate = ({ name, course, date, companyName, companyLogo }) => {
   const [loading, setLoading] = useState(false);
+  const [buttonsVisible, setButtonsVisible] = useState(true); // state for controlling button visibility
 
   // تابع دانلود PDF
   const downloadPDF = () => {
     setLoading(true);
+    setButtonsVisible(false); // hide buttons
+
     const certificateElement = document.getElementById("certificate");
 
-    // مخفی کردن دکمه‌ها
+    // مخفی کردن دکمه‌ها از DOM برای مخفی کردن آنها در هنگام اسکرین‌شات
     const buttons = document.querySelectorAll(".download-buttons button");
     buttons.forEach(button => button.style.display = 'none');
 
     html2canvas(certificateElement).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
-      const doc = new jsPDF();
-      doc.addImage(imgData, 'PNG', 10, 10);
+
+      // تنظیم PDF به صورت افقی و ابعاد مناسب
+      const doc = new jsPDF('landscape', 'px', 'a4');
+      doc.addImage(imgData, 'PNG', 10, 10, 570, 320);  // ابعاد مناسب برای 80 درصد از صفحه
       doc.save('certificate.pdf');
 
-      // نمایش مجدد دکمه‌ها پس از دانلود
-      buttons.forEach(button => button.style.display = 'block');
-      setLoading(false);
+      // نمایش دوباره دکمه‌ها پس از دانلود
+      setTimeout(() => {
+        buttons.forEach(button => button.style.display = 'block');
+        setButtonsVisible(true); // show buttons after download
+        setLoading(false);
+      }, 10000); // 10 seconds delay
     });
   };
 
   // تابع دانلود Image
   const downloadImage = () => {
     setLoading(true);
+    setButtonsVisible(false); // hide buttons
+
     const certificateElement = document.getElementById("certificate");
 
-    // مخفی کردن دکمه‌ها
+    // مخفی کردن دکمه‌ها از DOM برای مخفی کردن آنها در هنگام اسکرین‌شات
     const buttons = document.querySelectorAll(".download-buttons button");
     buttons.forEach(button => button.style.display = 'none');
 
@@ -170,9 +177,12 @@ const Certificate = ({ name, course, date, companyName, companyLogo }) => {
       link.download = 'certificate.png';
       link.click();
 
-      // نمایش مجدد دکمه‌ها پس از دانلود
-      buttons.forEach(button => button.style.display = 'block');
-      setLoading(false);
+      // نمایش دوباره دکمه‌ها پس از دانلود
+      setTimeout(() => {
+        buttons.forEach(button => button.style.display = 'block');
+        setButtonsVisible(true); // show buttons after download
+        setLoading(false);
+      }, 10000); // 10 seconds delay
     });
   };
 
@@ -207,14 +217,16 @@ const Certificate = ({ name, course, date, companyName, companyLogo }) => {
         </CertificateBody>
 
         {/* دکمه‌های دانلود */}
-        <DownloadButtons>
-          <DownloadButton onClick={downloadPDF} disabled={loading}>
-            {loading ? 'Processing...' : 'Download as PDF'}
-          </DownloadButton>
-          <DownloadButton onClick={downloadImage} disabled={loading}>
-            {loading ? 'Processing...' : 'Download as Image'}
-          </DownloadButton>
-        </DownloadButtons>
+        {buttonsVisible && (
+          <DownloadButtons>
+            <DownloadButton onClick={downloadPDF} disabled={loading}>
+              {loading ? 'Processing...' : 'Download as PDF'}
+            </DownloadButton>
+            <DownloadButton onClick={downloadImage} disabled={loading}>
+              {loading ? 'Processing...' : 'Download as Image'}
+            </DownloadButton>
+          </DownloadButtons>
+        )}
       </CertificateBorder>
     </CertificateContainer>
   );
