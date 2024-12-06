@@ -1,6 +1,6 @@
 import React from 'react';
 import Certificate from 'certificate-package';
-import 'certificate-package/dist/index.css';  // Import the default CSS for styling
+// import 'certificate-package/dist/index.css';  // Import the default CSS for styling
 
 const App = () => {
   return (
